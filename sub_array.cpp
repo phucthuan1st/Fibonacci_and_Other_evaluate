@@ -10,7 +10,8 @@ int findMaxSumSubArray(int *a, int n, int &count_compare, int &count_assign)
     count_assign = 2; // 2a
     count_compare = 0;
 
-    for (int i = 0; ++count_compare && i < n; ++count_assign, i++) // (n+1)c, na
+    ++count_assign;
+    for (int i = 0; ++count_compare && i < n; ++count_assign, i++) // (n+1)c, (n+1)a
     {
         sum = max(a[i], sum + a[i]);
         count_compare++;
@@ -22,7 +23,7 @@ int findMaxSumSubArray(int *a, int n, int &count_compare, int &count_assign)
 
         // 2na 2nc
         /*
-        assign = 2a + na + 2na = (3n + 2)a
+        assign = 2a + (n+1)a + 2na = (3n + 3)a
         compare = (n+1)c + 2nc = (3n + 1)c
         */
     }
@@ -36,6 +37,9 @@ int main()
 
     srand(time(0));
 
+    fstream fout("SubArray.csv", ios::out);
+
+    fout << "n, Comparision, Assign" << endl;
     for (int i = 0; i < 5; i++)
     {
         int count_compare = 0;
@@ -46,8 +50,11 @@ int main()
         int max_sum_sub_array = findMaxSumSubArray(a, N_size[i], count_compare, count_assign);
         printf("Max of sub array is: %d, with %d assign, and %d comparision\n", max_sum_sub_array, count_assign, count_compare);
 
+        fout << N_size[i] << "," << count_compare << "," << count_assign << endl;
+
         delete[] a;
     }
 
+    fout.close();
     return 0;
 }

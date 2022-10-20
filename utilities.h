@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <ctime>
+#include <fstream>
 
 #define INT_MIN -2147483648
 

@@ -1,5 +1,6 @@
 #include "fibonacci.h"
 #include <ctime>
+#include <fstream>
 
 int fibonacci_recursion(int n, int &count_compare)
 {
@@ -43,19 +44,31 @@ int main()
 
     int a[] = {5, 15, 25, 35, 40};
 
+    fstream fout;
+
+    fout.open("Fibo_Recursion.csv", ios::out);
+
+    fout << "n, Number of compare\n";
     for (auto &element : a)
     {
         int count_compare = 0;
         cout << "Fibonacci " << element << " is " << fibonacci_recursion(element, count_compare) << endl;
         cout << "Number of compare: " << count_compare << endl;
+        fout << element << "," << count_compare << endl;
     }
+    fout.close();
 
     cout << "--------------------------------" << endl;
 
+    fout.open("Fibo_Loop.csv", ios::out);
+    fout << "n, number of assign" << endl;
     for (auto &element : a)
     {
         int count_assign = 0;
         cout << "Fibonacci " << element << " is " << fibonacci_loop(element, count_assign) << endl;
         cout << "Number of assign: " << count_assign << endl;
+        fout << element << "," << count_assign << endl;
     }
+
+    fout.close();
 }

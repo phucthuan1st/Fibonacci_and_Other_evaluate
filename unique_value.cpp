@@ -39,6 +39,8 @@ int main()
 
     srand(time(0));
 
+    fstream fout("Unique_Value.csv", ios::out);
+    fout << "n, Comparision, Assign" << endl;
     for (int i = 0; i < 5; i++)
     {
         int count_compare = 0;
@@ -57,7 +59,10 @@ int main()
         cout << "Number of assign: " << count_assign << endl;
         cout << "Number of compare: " << count_compare << endl;
         cout << "--------------------" << endl;
+
+        fout << N_size[i] << "," << count_compare << "," << count_assign << endl;
         delete[] a;
     }
+    fout.close();
     return 0;
 }
