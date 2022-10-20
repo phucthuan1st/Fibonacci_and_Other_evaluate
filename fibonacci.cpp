@@ -23,6 +23,7 @@ int fibonacci_loop(int n, int &count_assign)
     int answer = 1;
     count_assign++;
 
+    count_assign++;
     for (int i = 2; i <= n; count_assign++, i++)
     {
         answer = last + nextToLast;
